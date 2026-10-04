@@ -25,7 +25,7 @@
 
     /* Cores das Etapas */
     body.capa-bg {
-      background-color: #58182b;
+      background-color: #7a1c38;
       color: #ffb3c1;
     }
 
@@ -34,7 +34,7 @@
       color: #4a2830;
     }
 
-    /* Animação de Corações Flutuantes */
+    /* Animação de Corações Flutuantes no Fundo */
     .heart-bg {
       position: fixed;
       top: 0;
@@ -91,7 +91,6 @@
       color: #ff9ebb;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
       margin-bottom: 25px;
-      padding: 0 10px;
     }
 
     .cat-btn {
@@ -100,7 +99,6 @@
       cursor: pointer;
       outline: none;
       transition: transform 0.3s ease;
-      display: inline-block;
     }
 
     .cat-btn:hover {
@@ -109,15 +107,13 @@
 
     .cat-img {
       width: 220px;
-      height: 220px;
-      object-fit: contain;
       max-width: 80vw;
-      filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
+      filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
     }
 
     .sub-capa {
       font-size: 1.2rem;
-      margin-top: 25px;
+      margin-top: 20px;
       color: #ffc2d1;
       font-weight: 600;
       letter-spacing: 1px;
@@ -130,7 +126,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.75);
+      background: rgba(0,0,0,0.7);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -138,7 +134,7 @@
     }
 
     .modal-card {
-      background: #7a1c38;
+      background: #801d3a;
       border: 2px solid #ff85a1;
       border-radius: 20px;
       padding: 30px 20px;
@@ -149,7 +145,7 @@
 
     .modal-card h3 {
       font-family: 'Dancing Script', cursive;
-      font-size: 2.2rem;
+      font-size: 2rem;
       color: #ffb3c1;
       margin-bottom: 10px;
     }
@@ -195,11 +191,10 @@
 
     /* Mensagem Acertou */
     .success-popup {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-family: 'Dancing Script', cursive;
       color: #ff85a1;
       animation: pop 0.5s ease-out;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
     @keyframes pop {
@@ -214,7 +209,7 @@
       padding: 15px 20px;
       border-radius: 15px;
       margin-bottom: 30px;
-      max-width: 650px;
+      max-width: 600px;
       width: 100%;
     }
 
@@ -253,7 +248,7 @@
       width: 100%;
       border-radius: 15px;
       object-fit: cover;
-      max-height: 550px;
+      max-height: 500px;
       margin-bottom: 15px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     }
@@ -314,18 +309,44 @@
   <!-- Fundo de Corações -->
   <div class="heart-bg" id="heartContainer"></div>
 
-  <!-- Músicas do Site -->
-  <audio id="musica1" src="musica1.mp3" preload="auto" loop></audio>
-  <audio id="musica2" src="musica2.mp3" preload="auto" loop></audio>
-  <audio id="musica3" src="musica3.mp3" preload="auto" loop></audio>
+  <!-- Elemento para tocar o miau -->
+  <audio id="audioMiau" src="https://www.soundjay.com/human/sounds/cat-meow-1.mp3"></audio>
+  
+  <!-- Música 1: Until I Found You -->
+  <audio id="musica1" src="musica1.mp3" loop></audio>
+  
+  <!-- Música 2: It's You -->
+  <audio id="musica2" src="musica2.mp3" loop></audio>
+
+  <!-- Música 3: Dandelions -->
+  <audio id="musica3" src="musica3.mp3" loop></audio>
 
   <!-- ================= CAPA ================= -->
   <section id="capa" class="screen">
     <h1 class="title-capa">SOBRE O AMOR DA MINHA VIDA, AO MEU VER</h1>
     
     <button class="cat-btn" id="catBtn" onclick="abrirSenha()">
-      <!-- Imagem Direta da Gata Marie com suporte a falha -->
-      <img class="cat-img" id="marieImg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Marie_Disney.png/480px-Marie_Disney.png" alt="Gata Marie" onerror="usarImagemBackup(this)" />
+      <svg class="cat-img" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- SVG Ilustrativo fofo da Gata Marie -->
+        <circle cx="100" cy="110" r="60" fill="#ffffff" stroke="#ffb3c1" stroke-width="3"/>
+        <polygon points="50,60 75,10 90,65" fill="#ffffff" stroke="#ffb3c1" stroke-width="3"/>
+        <polygon points="55,55 72,20 82,60" fill="#ffccd5"/>
+        <polygon points="150,60 125,10 110,65" fill="#ffffff" stroke="#ffb3c1" stroke-width="3"/>
+        <polygon points="145,55 128,20 118,60" fill="#ffccd5"/>
+        <!-- Laço Rosa da Marie -->
+        <path d="M 80 40 Q 100 50 120 40 Q 110 25 100 35 Q 90 25 80 40 Z" fill="#ff4d6d"/>
+        <circle cx="100" cy="36" r="6" fill="#c9184a"/>
+        <!-- Rosto -->
+        <ellipse cx="80" cy="105" rx="6" ry="8" fill="#592533"/>
+        <ellipse cx="120" cy="105" rx="6" ry="8" fill="#592533"/>
+        <polygon points="96,115 104,115 100,120" fill="#ff85a1"/>
+        <path d="M 92 124 Q 100 130 108 124" fill="none" stroke="#592533" stroke-width="2" stroke-linecap="round"/>
+        <!-- Bigodes -->
+        <line x1="50" y1="110" x2="70" y1="112" stroke="#ffb3c1" stroke-width="2"/>
+        <line x1="48" y1="118" x2="68" y1="117" stroke="#ffb3c1" stroke-width="2"/>
+        <line x1="150" y1="110" x2="130" y1="112" stroke="#ffb3c1" stroke-width="2"/>
+        <line x1="152" y1="118" x2="132" y1="117" stroke="#ffb3c1" stroke-width="2"/>
+      </svg>
     </button>
     
     <p class="sub-capa">CLIQUE NA GATA E COLOQUE A SENHA</p>
@@ -336,7 +357,7 @@
     <div class="modal-card">
       <h3>Digite a Senha</h3>
       <p>💡 <em>Dica: Lembra o dia que foi o começo amor</em></p>
-      <input type="text" id="inputSenha" placeholder="DD/MM/AAAA" onkeydown="verificarEnter(event)" />
+      <input type="text" id="inputSenha" placeholder="DD/MM/AAAA" />
       <button onclick="verificarSenha()">Entrar ❤️</button>
       <p id="errorMsg" class="error-msg hidden">Senha incorreta, tente novamente amor!</p>
     </div>
@@ -356,7 +377,7 @@
       <p>🎵 Amor escute essa musica antes de ler.</p>
       <audio controls id="playerMusica2">
         <source src="musica2.mp3" type="audio/mpeg">
-        Seu navegador não suporta o áudio.
+        Seu navegador não suporta o reprodutor de áudio.
       </audio>
     </div>
 
@@ -401,7 +422,7 @@
       <div class="photo-card">
         <img src="foto6.jpg" alt="Foto 6" />
         <p><strong>FOTO 6</strong><br>
-        Como eu a vejo: "Minha paixão, quando olhei para essa foto, a primeira coisa que me veio à cabeça foi o quanto você é a minha cowgirl favorita. Esse sorriso radiante e espontâneo ilumina o meu dia mais do que qualquer raio de sol. Eu amo a sua autenticidade e a forma como você abraça cada momento com essa alegria contagiante. Nessa imagem, eu vejo a mulher forte e, ao mesmo tempo, doce, que conquistou o meu coração. Eu tenho um orgulho imenso de estar ao seu lado e de poder chamar você de minha."</p>
+        Como eu a vejo: "Minha paixão, quando olhei para essa foto, a primeira coisa que me veio à cabeça foi o quanto você é a minha cowgirl favorita. Esse sorriso radiante e espontâneo ilumina o meu dia mais do que qualquer raio de sol. Eu amo a sua autenticidade e a forma como você abraça cada momento com essa alegria contagiante. Nessa imagem, eu vejo a mulher forte e, ao mesmo tempo, doce, que conquistou o meu coração. Eu tenho um orgulho imenso de estar ao side e de poder chamar você de minha."</p>
       </div>
 
       <!-- Foto 7 -->
@@ -442,9 +463,9 @@ Obrigado por ser exatamente quem você é, por me apoiar, por me ensinar tanto e
   </section>
 
   <script>
-    // Gerar corações flutuantes de fundo
+    // Gerador de Corações de Fundo
     function createHearts() {
-      const container = document.getElementById('heartContainer');
+      const container = id('heartContainer');
       for (let i = 0; i < 20; i++) {
         const heart = document.createElement('div');
         heart.classList.add('heart-particle');
@@ -457,87 +478,49 @@ Obrigado por ser exatamente quem você é, por me apoiar, por me ensinar tanto e
     }
     createHearts();
 
-    // Fallback caso a imagem da gata Marie falhe no carregamento
-    function usarImagemBackup(img) {
-      img.onerror = null;
-      img.src = "https://images.rawpixel.com/image_png_800/22022022/1645511671_1_png-39.png";
-    }
+    function id(e) { return document.getElementById(e); }
 
-    // Efeito Sonoro do Miau via Web Audio API (Não precisa de ficheiros externos!)
-    function tocarMiauSintetizado() {
-      try {
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(400, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.2);
-        osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.6);
-
-        gain.gain.setValueAtTime(0, audioCtx.currentTime);
-        gain.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + 0.1);
-        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.6);
-
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.6);
-      } catch (e) {
-        console.log("Áudio indisponível:", e);
-      }
-    }
-
-    // Ação ao Clicar na Gata
+    // Ação ao clicar na Gata Marie
     function abrirSenha() {
-      tocarMiauSintetizado();
+      // Toca som de Miau
+      const miau = id('audioMiau');
+      miau.currentTime = 0;
+      miau.play().catch(() => {});
 
-      // Desbloqueia e toca a música 1 (Until I Found You)
-      const mus1 = document.getElementById('musica1');
-      if (mus1) {
-        mus1.volume = 0.8;
-        mus1.play().catch(err => console.log("Permissão de áudio pendente:", err));
-      }
+      // Toca a música 1 de fundo (Stephen Sanchez)
+      const mus1 = id('musica1');
+      mus1.play().catch(() => {});
 
-      document.getElementById('modalSenha').classList.remove('hidden');
+      // Exibe Modal de Senha
+      id('modalSenha').classList.remove('hidden');
     }
 
-    function verificarEnter(event) {
-      if (event.key === 'Enter') {
-        verificarSenha();
-      }
-    }
-
-    // Validar Senha
+    // Verificar Senha
     function verificarSenha() {
-      const input = document.getElementById('inputSenha').value.trim();
-      const erro = document.getElementById('errorMsg');
+      const input = id('inputSenha').value.trim();
+      const erro = id('errorMsg');
 
-      // Aceita formatos: 16/03/2026, 16032026 ou 16-03-2026
-      if (input === '16/03/2026' || input === '16032026' || input === '16-03-2026') {
+      // Normaliza a entrada para aceitar 16/03/2026 ou 16032026
+      if (input === '16/03/2026' || input === '16032026') {
         erro.classList.add('hidden');
-        document.getElementById('modalSenha').classList.add('hidden');
+        id('modalSenha').classList.add('hidden');
 
-        const pop = document.getElementById('popupSucesso');
+        // Mostra mensagem de acerto
+        const pop = id('popupSucesso');
         pop.classList.remove('hidden');
 
         setTimeout(() => {
           pop.classList.add('hidden');
           
           // Pausa Música 1
-          const mus1 = document.getElementById('musica1');
-          if (mus1) mus1.pause();
-
-          // Toca Música 2 automaticamente ao entrar na galeria
-          const player2 = document.getElementById('playerMusica2');
-          if (player2) player2.play().catch(() => {});
+          id('musica1').pause();
 
           // Transição para a Galeria
-          document.getElementById('capa').classList.add('hidden');
-          document.getElementById('galeria').classList.remove('hidden');
+          id('capa').classList.add('hidden');
+          id('galeria').classList.remove('hidden');
           document.body.className = 'main-bg';
           
+          // Rola para o topo
           window.scrollTo(0, 0);
         }, 1800);
 
@@ -548,15 +531,15 @@ Obrigado por ser exatamente quem você é, por me apoiar, por me ensinar tanto e
 
     // Avançar para a Tela Final
     function irParaFinal() {
-      const player2 = document.getElementById('playerMusica2');
-      if (player2) player2.pause();
+      // Pausa Música 2 se estiver tocando
+      id('playerMusica2').pause();
 
-      document.getElementById('galeria').classList.add('hidden');
-      document.getElementById('telaFinal').classList.remove('hidden');
+      id('galeria').classList.add('hidden');
+      id('telaFinal').classList.remove('hidden');
 
-      // Toca Música 3 (Dandelions)
-      const player3 = document.getElementById('playerMusica3');
-      if (player3) player3.play().catch(() => {});
+      // Toca Música 3 (Ruth B. - Dandelions)
+      const player3 = id('playerMusica3');
+      player3.play().catch(() => {});
 
       window.scrollTo(0, 0);
     }
