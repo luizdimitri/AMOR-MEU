@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sobre o Amor da Minha Vida, Ao Meu Ver</title>
   
-  <!-- Fontes do Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -23,7 +22,6 @@
       transition: background-color 0.8s ease;
     }
 
-    /* Cores das Etapas */
     body.capa-bg {
       background-color: #58182b;
       color: #ffb3c1;
@@ -34,7 +32,6 @@
       color: #4a2830;
     }
 
-    /* Animação de Corações Flutuantes */
     .heart-bg {
       position: fixed;
       top: 0;
@@ -54,20 +51,11 @@
     }
 
     @keyframes floatUp {
-      0% {
-        transform: translateY(100vh) scale(0.5);
-        opacity: 0;
-      }
-      50% {
-        opacity: 0.8;
-      }
-      100% {
-        transform: translateY(-10vh) scale(1.2);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+      50% { opacity: 0.8; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
     }
 
-    /* Utilitários de Seção */
     .screen {
       min-height: 100vh;
       display: flex;
@@ -84,7 +72,7 @@
       display: none !important;
     }
 
-    /* --- CAPA --- */
+    /* CAPA */
     .title-capa {
       font-family: 'Dancing Script', cursive;
       font-size: 2.8rem;
@@ -123,7 +111,7 @@
       letter-spacing: 1px;
     }
 
-    /* Modal de Senha */
+    /* MODAL DE SENHA */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -193,7 +181,6 @@
       margin-top: 10px;
     }
 
-    /* Mensagem Acertou */
     .success-popup {
       font-size: 2.2rem;
       font-family: 'Dancing Script', cursive;
@@ -207,28 +194,27 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
-    /* --- ÁREA PRINCIPAL (GALERIA) --- */
-    .audio-notice {
+    /* CAIXAS DE ÁUDIO */
+    .audio-box {
       background: #ffe6ed;
       border: 2px dashed #ff85a1;
       padding: 15px 20px;
       border-radius: 15px;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
       max-width: 650px;
       width: 100%;
     }
 
-    .audio-notice p {
+    .audio-box p {
       font-weight: 600;
       color: #c9184a;
       margin-bottom: 10px;
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
 
     audio {
       width: 100%;
       height: 40px;
-      outline: none;
     }
 
     .gallery-container {
@@ -274,15 +260,13 @@
       border-radius: 30px;
       cursor: pointer;
       box-shadow: 0 5px 15px rgba(201, 24, 74, 0.4);
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s;
     }
 
     .next-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(201, 24, 74, 0.6);
     }
 
-    /* --- TELA FINAL --- */
     .final-card {
       background: #ffffff;
       border-radius: 20px;
@@ -292,7 +276,7 @@
       box-shadow: 0 10px 25px rgba(200, 100, 130, 0.2);
       border: 1px solid #ffccd5;
       text-align: left;
-      margin-top: 20px;
+      margin-top: 10px;
     }
 
     .final-card img {
@@ -311,21 +295,17 @@
 </head>
 <body class="capa-bg">
 
-  <!-- Fundo de Corações -->
   <div class="heart-bg" id="heartContainer"></div>
 
-  <!-- Músicas do Site -->
-  <audio id="musica1" src="musica1.mp3" preload="auto" loop></audio>
-  <audio id="musica2" src="musica2.mp3" preload="auto" loop></audio>
-  <audio id="musica3" src="musica3.mp3" preload="auto" loop></audio>
+  <!-- Música 1 (Toca na Capa) -->
+  <audio id="musica1" src="musica1.mp3" loop preload="auto"></audio>
 
-  <!-- ================= CAPA ================= -->
+  <!-- CAPA -->
   <section id="capa" class="screen">
     <h1 class="title-capa">SOBRE O AMOR DA MINHA VIDA, AO MEU VER</h1>
     
     <button class="cat-btn" id="catBtn" onclick="abrirSenha()">
-      <!-- Imagem Direta da Gata Marie com suporte a falha -->
-      <img class="cat-img" id="marieImg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Marie_Disney.png/480px-Marie_Disney.png" alt="Gata Marie" onerror="usarImagemBackup(this)" />
+      <img class="cat-img" id="marieImg" src="marie.png" alt="Gata Marie" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Marie_Disney.png/480px-Marie_Disney.png';" />
     </button>
     
     <p class="sub-capa">CLIQUE NA GATA E COLOQUE A SENHA</p>
@@ -349,100 +329,81 @@
     </div>
   </div>
 
-  <!-- ================= GALERIA ================= -->
+  <!-- GALERIA -->
   <section id="galeria" class="screen hidden">
     
-    <div class="audio-notice">
-      <p>🎵 Amor escute essa musica antes de ler.</p>
-      <audio controls id="playerMusica2">
-        <source src="musica2.mp3" type="audio/mpeg">
-        Seu navegador não suporta o áudio.
-      </audio>
+    <!-- Player da Música 2 -->
+    <div class="audio-box">
+      <p>🎵 Amor, clica no Play para ouvir esta música enquanto lês:</p>
+      <audio controls id="playerMusica2" src="musica2.mp3" preload="auto"></audio>
     </div>
 
     <div class="gallery-container">
-      
-      <!-- Foto 1 -->
       <div class="photo-card">
         <img src="foto1.jpg" alt="Foto 1" />
         <p><strong>Foto 1 (Com óculos e biquinho)</strong><br>
-        Amor, quando eu vejo essa foto, meu coração se enche de uma alegria sem fim. Esse biquinho irresistível e os óculos que emolduram seu rosto lindo criam uma imagem que é pura fofura e charme. Aos meus olhos apaixonados, você é a definição de perfeição, e a forma como a luz destaca seu cabelo longo e escuro me faz suspirar cada vez que olho. Eu sou o homem mais sortudo do mundo por ter alguém tão doce e linda ao meu lado.</p>
+        Amor, quando eu vejo essa foto, meu coração se enche de uma alegria sem fim...</p>
       </div>
 
-      <!-- Foto 2 -->
       <div class="photo-card">
         <img src="foto2.jpg" alt="Foto 2" />
         <p><strong>Foto 2 (No quarto com bolsas e top azul)</strong><br>
-        Minha paixão, seu brilho natural nessa foto é simplesmente radiante. Adoro o contraste do azul vibrante do seu top com o tom suave da parede rosa, e como seu cabelo ondulado emoldura seu rosto com tanta graça. Meus olhos de apaixonado só conseguem ver a sua beleza autêntica e a alegria que você transmite. Você transforma qualquer ambiente, mesmo um quarto cheio de bolsas, em um lugar mágico só com a sua presença. Eu te amo cada dia mais.</p>
+        Minha paixão, seu brilho natural nessa foto é simplesmente radiante...</p>
       </div>
 
-      <!-- Foto 3 -->
       <div class="photo-card">
         <img src="foto3.jpg" alt="Foto 3" />
         <p><strong>Foto 3</strong><br>
-        Minha princesa, esta imagem captura sua essência mais pura e doce. A leveza do seu cabelo solto e o brilho suave nos seus olhos transmitem uma paz e ternura que me fazem querer te abraçar e proteger para sempre. Meus olhos de apaixonado enxergam uma beleza que vai muito além do físico; vejo uma alma gentil e um amor que ilumina minha vida. Você é a minha joia mais preciosa.</p>
+        Minha princesa, esta imagem captura sua essência mais pura e doce...</p>
       </div>
 
-      <!-- Foto 4 -->
       <div class="photo-card">
         <img src="foto4.jpg" alt="Foto 4" />
         <p><strong>Foto 4 (No carro com jaqueta de couro)</strong><br>
-        Minha neném, adoro a sua energia e atitude nessa foto! A jaqueta de couro e o colar delicado mostram uma mistura de força e doçura que me fascina. Esse meio sorriso no carro me faz imaginar todas as aventuras que ainda vamos viver juntos. Aos meus olhos apaixonados, você é a mulher mais incrível e confiante, e saber que você escolheu estar comigo me faz sentir o homem mais realizado do mundo.</p>
+        Minha neném, adoro a sua energia e atitude nessa foto!...</p>
       </div>
 
-      <!-- Foto 5 -->
       <div class="photo-card">
         <img src="foto5.jpg" alt="Foto 5" />
         <p><strong>Foto 5 (No jardim com vestido longo)</strong><br>
-        Minha dona, você está deslumbrante nesse vestido longo preto, flutuando entre as plantas do jardim à noite. A forma como a luz destaca sua silhueta e como a natureza se curvam diante da sua beleza é algo mágico. Meus olhos de apaixonado te veem como uma rainha em seu próprio reino, e a leveza do seu passo me faz sonhar com um futuro repleto de momentos inesquecíveis ao seu lado. Você é a mulher que conquistou meu coração por inteiro.</p>
+        Minha dona, você está deslumbrante nesse vestido longo preto...</p>
       </div>
 
-      <!-- Foto 6 -->
       <div class="photo-card">
         <img src="foto6.jpg" alt="Foto 6" />
         <p><strong>FOTO 6</strong><br>
-        Como eu a vejo: "Minha paixão, quando olhei para essa foto, a primeira coisa que me veio à cabeça foi o quanto você é a minha cowgirl favorita. Esse sorriso radiante e espontâneo ilumina o meu dia mais do que qualquer raio de sol. Eu amo a sua autenticidade e a forma como você abraça cada momento com essa alegria contagiante. Nessa imagem, eu vejo a mulher forte e, ao mesmo tempo, doce, que conquistou o meu coração. Eu tenho um orgulho imenso de estar ao seu lado e de poder chamar você de minha."</p>
+        Como eu a vejo: "Minha paixão, quando olhei para essa foto..."</p>
       </div>
 
-      <!-- Foto 7 -->
       <div class="photo-card">
         <img src="foto7.jpg" alt="Foto 7" />
         <p><strong>FOTO 7</strong><br>
-        Como eu a vejo: "Minha princesa, quando eu vejo essa foto, eu não consigo parar de sorrir. Esse seu jeito espontâneo de tirar uma 'selfie' rápida no espelho é um dos meus detalhes favoritos sobre você. Meus olhos ficam presos na sua beleza genuína e na leveza que você traz para a minha vida. Você transforma um momento simples em algo mágico apenas com o seu sorriso. Eu te vejo como a pessoa que traz cor e felicidade para os meus dias, e o meu maior desejo é passar todos os meus momentos ao seu lado, admirando a mulher incrível que você é."</p>
+        Como eu a vejo: "Minha princesa, quando eu vejo essa foto..."</p>
       </div>
-
     </div>
 
     <button class="next-btn" onclick="irParaFinal()">Avançar ❤️</button>
   </section>
 
-  <!-- ================= TELA FINAL ================= -->
+  <!-- TELA FINAL -->
   <section id="telaFinal" class="screen hidden">
     
-    <div class="audio-notice">
-      <p>🎶 Ouça a nossa música final:</p>
-      <audio controls id="playerMusica3">
-        <source src="musica3.mp3" type="audio/mpeg">
-      </audio>
+    <!-- Player da Música 3 -->
+    <div class="audio-box">
+      <p>🎶 Carrega no Play para ouvir a nossa música final:</p>
+      <audio controls id="playerMusica3" src="musica3.mp3" preload="auto"></audio>
     </div>
 
     <div class="final-card">
       <img src="foto8.jpg" alt="Foto 8" />
       <div class="final-text">
-Meu amor, olhar para você e para tudo o que construímos juntos me faz ter a certeza absoluta de que Deus colocou um anjo na minha vida. Eu precisava parar um pouco, te olhar nos olhos através de cada detalhe, de cada foto, e te dizer o quanto você representa para mim. Eu não sei o que seria de mim hoje se você não tivesse chegado com esse seu jeito único, trazendo essa luz incrível e transformando tudo ao meu redor.
-
-Você mudou a minha vida de uma forma que talvez nem você mesma dimensione. A sua presença me inspira a ser um homem melhor a cada dia, a buscar o meu melhor, a cuidar do nosso futuro e a valorizar cada segundo ao seu lado. Ver a mulher incrível, forte, linda e maravilhosa que você é me enche de um orgulho tão grande que nem cabe no peito. Você não é apenas a minha namorada; você é minha parceira, minha porto seguro, o meu grande amor.
-
-Sou infinitamente grato por cada sorriso seu, por cada abraço que me acalma, por cada momento simples que se torna inesquecível só porque você está ali. Quando eu imagino o meu futuro, eu vejo você em cada detalhe dele. Você é o meu maior presente, a minha princesa, a dona do meu coração e a pessoa que eu escolho amar e cuidar todos os dias da minha vida.
-
-Obrigado por ser exatamente quem você é, por me apoiar, por me ensinar tanto e por ser essa mulher extraordinária ao meu lado. Eu te amo mais do que as palavras conseguem expressar, hoje e para todo o sempre. ❤️
+Meu amor, olhar para você e para tudo o que construímos juntos me faz ter a certeza absoluta de que Deus colocou um anjo na minha vida...
       </div>
     </div>
 
   </section>
 
   <script>
-    // Gerar corações flutuantes de fundo
     function createHearts() {
       const container = document.getElementById('heartContainer');
       for (let i = 0; i < 20; i++) {
@@ -457,14 +418,7 @@ Obrigado por ser exatamente quem você é, por me apoiar, por me ensinar tanto e
     }
     createHearts();
 
-    // Fallback caso a imagem da gata Marie falhe no carregamento
-    function usarImagemBackup(img) {
-      img.onerror = null;
-      img.src = "https://images.rawpixel.com/image_png_800/22022022/1645511671_1_png-39.png";
-    }
-
-    // Efeito Sonoro do Miau via Web Audio API (Não precisa de ficheiros externos!)
-    function tocarMiauSintetizado() {
+    function tocarMiau() {
       try {
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         const osc = audioCtx.createOscillator();
@@ -484,37 +438,29 @@ Obrigado por ser exatamente quem você é, por me apoiar, por me ensinar tanto e
 
         osc.start();
         osc.stop(audioCtx.currentTime + 0.6);
-      } catch (e) {
-        console.log("Áudio indisponível:", e);
-      }
+      } catch (e) {}
     }
 
-    // Ação ao Clicar na Gata
     function abrirSenha() {
-      tocarMiauSintetizado();
+      tocarMiau();
 
-      // Desbloqueia e toca a música 1 (Until I Found You)
+      // Ativa a Música 1 quando clica na gatinha
       const mus1 = document.getElementById('musica1');
       if (mus1) {
-        mus1.volume = 0.8;
-        mus1.play().catch(err => console.log("Permissão de áudio pendente:", err));
+        mus1.play().catch(() => {});
       }
 
       document.getElementById('modalSenha').classList.remove('hidden');
     }
 
     function verificarEnter(event) {
-      if (event.key === 'Enter') {
-        verificarSenha();
-      }
+      if (event.key === 'Enter') verificarSenha();
     }
 
-    // Validar Senha
     function verificarSenha() {
       const input = document.getElementById('inputSenha').value.trim();
       const erro = document.getElementById('errorMsg');
 
-      // Aceita formatos: 16/03/2026, 16032026 ou 16-03-2026
       if (input === '16/03/2026' || input === '16032026' || input === '16-03-2026') {
         erro.classList.add('hidden');
         document.getElementById('modalSenha').classList.add('hidden');
@@ -525,19 +471,18 @@ Obrigado por ser exatamente quem você é, por me apoiar, por me ensinar tanto e
         setTimeout(() => {
           pop.classList.add('hidden');
           
-          // Pausa Música 1
+          // Para a música 1 da capa
           const mus1 = document.getElementById('musica1');
           if (mus1) mus1.pause();
 
-          // Toca Música 2 automaticamente ao entrar na galeria
-          const player2 = document.getElementById('playerMusica2');
-          if (player2) player2.play().catch(() => {});
-
-          // Transição para a Galeria
           document.getElementById('capa').classList.add('hidden');
           document.getElementById('galeria').classList.remove('hidden');
           document.body.className = 'main-bg';
           
+          // Tenta tocar a música 2 automaticamente
+          const m2 = document.getElementById('playerMusica2');
+          if (m2) m2.play().catch(() => {});
+
           window.scrollTo(0, 0);
         }, 1800);
 
@@ -546,17 +491,17 @@ Obrigado por ser exatamente quem você é, por me apoiar, por me ensinar tanto e
       }
     }
 
-    // Avançar para a Tela Final
     function irParaFinal() {
-      const player2 = document.getElementById('playerMusica2');
-      if (player2) player2.pause();
+      // Para a música 2
+      const m2 = document.getElementById('playerMusica2');
+      if (m2) m2.pause();
 
       document.getElementById('galeria').classList.add('hidden');
       document.getElementById('telaFinal').classList.remove('hidden');
 
-      // Toca Música 3 (Dandelions)
-      const player3 = document.getElementById('playerMusica3');
-      if (player3) player3.play().catch(() => {});
+      // Tenta tocar a música 3 automaticamente
+      const m3 = document.getElementById('playerMusica3');
+      if (m3) m3.play().catch(() => {});
 
       window.scrollTo(0, 0);
     }
