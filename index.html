@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre o Amor da Minha Vida, Ao Meu Ver</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      color: #7a1c4b;
+    }
+
+    /* Animação de Corações a Flutuar */
+    .heart-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1000;
+      overflow: hidden;
+    }
+
+    .heart-bg span {
+      position: absolute;
+      display: block;
+      color: rgba(255, 105, 180, 0.4);
+      font-size: 20px;
+      animation: float 6s linear infinite;
+      bottom: -30px;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-105vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* --- ETAPA 1: CAPA --- */
+    #etapa1 {
+      background-color: #581836; /* Rosa Escuro */
+      color: #ffb3d9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    #etapa1 h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8rem;
+      margin-bottom: 25px;
+      color: #ff80bf;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    }
+
+    .btn-gata {
+      background: none;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      transition: transform 0.3s ease;
+    }
+
+    .btn-gata:hover {
+      transform: scale(1.08);
+    }
+
+    .btn-gata img {
+      width: 180px;
+      height: 180px;
+      object-fit: contain;
+      filter: drop-shadow(0 5px 15px rgba(255,105,180,0.3));
+    }
+
+    .instrucao-gata {
+      margin-top: 15px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #ff99cc;
+      letter-spacing: 1px;
+    }
+
+    /* Modal da Senha */
+    .modal-senha {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: #401026;
+      border: 2px solid #ff66b2;
+      padding: 30px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 380px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+
+    .modal-content h3 {
+      color: #ff99cc;
+      margin-bottom: 10px;
+    }
+
+    .modal-content p {
+      color: #ffccd5;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    .modal-content input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ff66b2;
+      background: #2b0b1a;
+      color: #fff;
+      font-size: 1rem;
+      text-align: center;
+      margin-bottom: 15px;
+      outline: none;
+    }
+
+    .modal-content button {
+      background: #ff3399;
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .modal-content button:hover {
+      background: #ff0077;
+    }
+
+    .mensagem-erro {
+      color: #ff4d4d;
+      margin-top: 10px;
+      font-size: 0.85rem;
+      display: none;
+    }
+
+    .mensagem-sucesso {
+      color: #4dff88;
+      margin-top: 10px;
+      font-size: 0.95rem;
+      font-weight: bold;
+      display: none;
+    }
+
+    /* --- ETAPAS 2 E 3: CONTEÚDO --- */
+    #etapa2, #etapa3 {
+      display: none;
+      background-color: #fff0f5; /* Rosa Clara */
+      min-height: 100vh;
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .card-audio {
+      background: #ffe6ee;
+      border: 2px dashed #ff99c2;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .card-audio p {
+      font-weight: 600;
+      color: #b30059;
+      margin-bottom: 10px;
+    }
+
+    .card-audio audio {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .galeria-item {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 35px;
+      box-shadow: 0 8px 20px rgba(255, 182, 193, 0.4);
+      border: 1px solid #ffccd5;
+    }
+
+    .galeria-item img {
+      width: 100%;
+      max-height: 550px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 15px;
+    }
+
+    .galeria-item p {
+      color: #5a1236;
+      line-height: 1.7;
+      font-size: 0.95rem;
+      text-align: justify;
+    }
+
+    .btn-avancar {
+      display: block;
+      width: 100%;
+      max-width: 250px;
+      margin: 30px auto;
+      padding: 15px;
+      background: linear-gradient(135deg, #ff66b2, #ff0077);
+      color: white;
+      text-align: center;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255, 0, 119, 0.3);
+      transition: 0.3s;
+    }
+
+    .btn-avancar:hover {
+      transform: translateY(-3deg);
+      box-shadow: 0 8px 20px rgba(255, 0, 119, 0.5);
+    }
+
+    /* Etapa 3 */
+    .texto-final {
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(255, 182, 193, 0.4);
+      border: 1px solid #ffccd5;
+      color: #5a1236;
+      line-height: 1.8;
+      font-size: 1rem;
+      margin-top: 20px;
+      white-space: pre-line;
+    }
+
+    .foto-final img {
+      width: 100%;
+      max-height: 550px;
+      object-fit: cover;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px rgba(255, 182, 193, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Animação de Corações -->
+  <div class="heart-bg" id="heartBg"></div>
+
+  <!-- Música de Fundo da Capa -->
+  <audio id="musicaCapa" loop>
+    <source src="musica1.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- --- ETAPA 1: CAPA --- -->
+  <div id="etapa1">
+    <h1>SOBRE O AMOR DA MINHA VIDA, AO MEU VER</h1>
+    
+    <button class="btn-gata" onclick="abrirModalSenha()">
+      <!-- Imagem de exemplo da Gata Marie -->
+      <img src="https://upload.wikimedia.org/wikipedia/en/d/dc/Marie_Aristocats.png" alt="Gata Marie" id="imgGata">
+    </button>
+    
+    <div class="instrucao-gata">CLIQUE NA GATA E COLOQUE A SENHA</div>
+  </div>
+
+  <!-- Modal de Senha -->
+  <div class="modal-senha" id="modalSenha">
+    <div class="modal-content">
+      <h3>Digite a Senha</h3>
+      <p>💡 Dica: Lembra o dia que foi o começo amor</p>
+      <input type="text" id="inputSenha" placeholder="DD/MM/AAAA">
+      <button onclick="verificarSenha()">Entrar ❤️</button>
+      <div class="mensagem-erro" id="msgErro">Senha incorreta, tenta de novo amor!</div>
+      <div class="mensagem-sucesso" id="msgSucesso">acertou em cheio amor ❤️</div>
+    </div>
+  </div>
+
+  <!-- --- ETAPA 2: GALERIA DE FOTOS --- -->
+  <div id="etapa2">
+    
+    <div class="card-audio">
+      <p>Amor escute essa musica antes de ler ❤️</p>
+      <audio id="musica2Controls" controls>
+        <source src="musica2.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <!-- Foto 1 -->
+    <div class="galeria-item">
+      <img src="foto1.jpg" alt="Foto 1">
+      <p><strong>Foto 1 (Com óculos e biquinho)</strong><br>
+      Amor, quando eu vejo essa foto, meu coração se enche de uma alegria sem fim. Esse biquinho irresistível e os óculos que emolduram seu rosto lindo criam uma imagem que é pura fofura e charme. Aos meus olhos apaixonados, você é a definição de perfeição, e a forma como a luz destaca seu cabelo longo e escuro me faz suspirar cada vez que olho. Eu sou o homem mais sortudo do mundo por ter alguém tão doce e linda ao meu lado.</p>
+    </div>
+
+    <!-- Foto 2 -->
+    <div class="galeria-item">
+      <img src="foto2.jpg" alt="Foto 2">
+      <p><strong>Foto 2 (No quarto com bolsas e top azul)</strong><br>
+      Minha paixão, seu brilho natural nessa foto é simplesmente radiante. Adoro o contraste do azul vibrante do seu top com o tom suave da parede rosa, e como seu cabelo ondulado emoldura seu rosto com tanta graça. Meus olhos de apaixonado só conseguem ver a sua beleza autêntica e a alegria que você transmite. Você transforma qualquer ambiente, mesmo um quarto cheio de bolsas, em um lugar mágico só com a sua presença. Eu te amo cada dia mais.</p>
+    </div>
+
+    <!-- Foto 3 -->
+    <div class="galeria-item">
+      <img src="foto3.jpg" alt="Foto 3">
+      <p><strong>Foto 3</strong><br>
+      Minha princesa, esta imagem captura sua essência mais pura e doce. A leveza do seu cabelo solto e o brilho suave nos seus olhos transmitem uma paz e ternura que me fazem querer te abraçar e proteger para sempre. Meus olhos de apaixonado enxergam uma beleza que vai muito além do físico; vejo uma alma gentil e um amor que ilumina minha vida. Você é a minha joia mais preciosa.</p>
+    </div>
+
+    <!-- Foto 4 -->
+    <div class="galeria-item">
+      <img src="foto4.jpg" alt="Foto 4">
+      <p><strong>Foto 4 (No carro com jaqueta de couro)</strong><br>
+      Minha neném, adoro a sua energia e atitude nessa foto! A jaqueta de couro e o colar delicado mostram uma mistura de força e doçura que me fascina. Esse meio sorriso no carro me faz imaginar todas as aventuras que ainda vamos viver juntos. Aos meus olhos apaixonados, você é a mulher mais incrível e confiante, e saber que você escolheu estar comigo me faz sentir o homem mais realizado do mundo.</p>
+    </div>
+
+    <!-- Foto 5 -->
+    <div class="galeria-item">
+      <img src="foto5.jpg" alt="Foto 5">
+      <p><strong>Foto 5 (No jardim com vestido longo)</strong><br>
+      Minha dona, você está deslumbrante nesse vestido longo preto, flutuando entre as plantas do jardim à noite. A forma como a luz destaca sua silhueta e como a natureza se curvam diante da sua beleza é algo mágico. Meus olhos de apaixonado te veem como uma rainha em seu próprio reino, e a leveza do seu passo me faz sonhar com um futuro repleto de momentos inesquecíveis ao seu lado. Você é a mulher que conquistou meu coração por inteiro.</p>
+    </div>
+
+    <!-- Foto 6 -->
+    <div class="galeria-item">
+      <img src="foto6.jpg" alt="Foto 6">
+      <p><strong>FOTO 6</strong><br>
+      Como eu a vejo: "Minha paixão, quando olhei para essa foto, a primeira coisa que me veio à cabeça foi o quanto você é a minha cowgirl favorita. Esse sorriso radiante e espontâneo ilumina o meu dia mais do que qualquer raio de sol. Eu amo a sua autenticidade e a forma como você abraça cada momento com essa alegria contagiante. Nessa imagem, eu vejo a mulher forte e, ao mesmo tempo, doce, que conquistou o meu coração. Eu tenho um orgulho imenso de estar ao seu lado e de poder chamar você de minha."</p>
+    </div>
+
+    <!-- Foto 7 -->
+    <div class="galeria-item">
+      <img src="foto7.jpg" alt="Foto 7">
+      <p><strong>FOTO 7</strong><br>
+      Como eu a vejo: "Minha princesa, quando eu vejo essa foto, eu não consigo parar de sorrir. Esse seu jeito espontâneo de tirar uma 'selfie' rápida no espelho é um dos meus detalhes favoritos sobre você. Meus olhos ficam presos na sua beleza genuína e na leveza que você traz para a minha vida. Você transforma um momento simples em algo mágico apenas com o seu sorriso. Eu te vejo como a pessoa que traz cor e felicidade para os meus dias, e o meu maior desejo é passar todos os meus momentos ao seu lado, admirando a mulher incrível que você é."</p>
+    </div>
+
+    <button class="btn-avancar" onclick="irParaEtapa3()">Avançar ❤️</button>
+  </div>
+
+  <!-- --- ETAPA 3: MENSAGEM FINAL --- -->
+  <div id="etapa3">
+    
+    <div class="card-audio">
+      <p>Aperte o play amor ❤️</p>
+      <audio id="musica3Controls" controls>
+        <source src="musica3.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <div class="foto-final">
+      <img src="foto8.jpg" alt="Foto 8">
+    </div>
+
+    <div class="texto-final">
+Meu amor, olhar para você e para tudo o que construímos juntos me faz ter a certeza absoluta de que Deus colocou um anjo na minha vida. Eu precisava parar um pouco, te olhar nos olhos através de cada detalhe, de cada foto, e te dizer o quanto você representa para mim. Eu não sei o que seria de mim hoje se você não tivesse chegado com esse seu jeito único, trazendo essa luz incrível e transformando tudo ao meu redor.
+
+Você mudou a minha vida de uma forma que talvez nem você mesma dimensione. A sua presença me inspira a ser um homem melhor a cada dia, a buscar o meu melhor, a cuidar do nosso futuro e a valorizar cada segundo ao seu lado. Ver a mulher incrível, forte, linda e maravilhosa que você é me enche de um orgulho tão grande que nem cabe no peito. Você não é apenas a minha namorada; você é minha parceira, minha porto seguro, o meu grande amor.
+
+Sou infinitamente grato por cada sorriso seu, por cada abraço que me acalma, por cada momento simples que se torna inesquecível só porque você está ali. Quando eu imagino o meu futuro, eu vejo você em cada detalhe dele. Você é o meu maior presente, a minha princesa, a dona do meu coração e a pessoa que eu escolho amar e cuidar todos os dias da minha vida.
+
+Obrigado por ser exatamente quem você é, por me apoiar, por me ensinar tanto e por ser essa mulher extraordinária ao meu lado. Eu te amo mais do que as palavras conseguem expressar, hoje e para todo o sempre. ❤️
+    </div>
+  </div>
+
+  <script>
+    // Gerar Corações Flutuantes
+    const heartBg = document.getElementById('heartBg');
+    for (let i = 0; i < 25; i++) {
+      const heart = document.createElement('span');
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+      heart.style.animationDelay = Math.random() * 5 + 's';
+      heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+      heartBg.appendChild(heart);
+    }
+
+    // Tocar Som de Miau (Sintetizador por áudio Web API)
+    function tocarSomMiau() {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(400, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.15);
+      osc.frequency.exponentialRampToValueAtTime(500, ctx.currentTime + 0.4);
+
+      gain.gain.setValueAtTime(0, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.3, ctx.currentTime + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start();
+      osc.stop(ctx.currentTime + 0.4);
+    }
+
+    // Tentar tocar música da capa após interação do utilizador
+    function iniciarMusicaCapa() {
+      const musicaCapa = document.getElementById('musicaCapa');
+      musicaCapa.play().catch(() => {});
+    }
+
+    function abrirModalSenha() {
+      tocarSomMiau();
+      iniciarMusicaCapa();
+      document.getElementById('modalSenha').style.display = 'flex';
+    }
+
+    function verificarSenha() {
+      const senhaInput = document.getElementById('inputSenha').value.trim();
+      const msgErro = document.getElementById('msgErro');
+      const msgSucesso = document.getElementById('msgSucesso');
+
+      if (senhaInput === '16/03/2026') {
+        msgErro.style.display = 'none';
+        msgSucesso.style.display = 'block';
+
+        setTimeout(() => {
+          document.getElementById('modalSenha').style.display = 'none';
+          document.getElementById('etapa1').style.display = 'none';
+          document.getElementById('etapa2').style.display = 'block';
+          
+          // Parar música 1 quando entra na etapa 2
+          const musicaCapa = document.getElementById('musicaCapa');
+          musicaCapa.pause();
+
+          window.scrollTo(0, 0);
+        }, 1500);
+
+      } else {
+        msgErro.style.display = 'block';
+      }
+    }
+
+    function irParaEtapa3() {
+      // Parar áudio 2 se estiver a tocar
+      const m2 = document.getElementById('musica2Controls');
+      if (m2) m2.pause();
+
+      document.getElementById('etapa2').style.display = 'none';
+      document.getElementById('etapa3').style.display = 'block';
+      window.scrollTo(0, 0);
+    }
+  </script>
+</body>
+</html>
